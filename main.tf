@@ -1,7 +1,5 @@
 provider "aws" {
-  access_key = "${var.scalr_aws_access_key}"
-  secret_key = "${var.scalr_aws_secret_key}"
-  region     = "us-east-1"
+ region     = var.region
 }
 
 resource "aws_instance" "scalr" {
@@ -11,12 +9,3 @@ resource "aws_instance" "scalr" {
   vpc_security_group_ids = ["sg-0880cfdc546b123ba"]
   }
 
-terraform {
-  backend "remote" {
-    hostname = "my.scalr.com:443"
-    organization = "org-sgncvo4mr5l4na0"
-    workspaces {
-      name = "vcs_cost_demo"
-    }
-  }
-}
